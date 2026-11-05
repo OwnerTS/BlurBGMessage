@@ -1,0 +1,6 @@
+{
+  "plugin_name": "BlurBGMessage",
+  "plugin_description": "Blurred translucent message background (Blur BG) with iOS-style outline.",
+  "loaded": "BlurBGMessage plugin successfully loaded",
+  "unloaded": "BlurBGMessage plugin unloaded"
+}

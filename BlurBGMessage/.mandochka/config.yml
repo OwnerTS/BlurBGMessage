@@ -1,0 +1,19 @@
+zipFormat: eaf
+source: BlurBGMessage/src
+buildNameUncompiled: "BlurBGMessage-{version}"
+buildNameCompiled: "BlurBGMessage-{version}"
+ignoreAll:
+  - BlurBGMessage/.mandochka/cache/*
+compilationIgnore:
+  - BlurBGMessage/src/main.py
+obfuscationConfig:
+  stripDocstrings: true
+  removeLogs: false
+  renameLocals: false
+dex:
+  enabled: true
+  source: BlurBGMessage/dex_src
+  stubs: compile_stubs
+  output: BlurBGMessage/res/dex/classes.dex
+  minApi: 26
+  targetJava: 8

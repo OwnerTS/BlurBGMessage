@@ -1,0 +1,6 @@
+builds/
+**/__pycache__/
+*.pyc
+*.tmp
+.mandochka/cache/
+BlurBGMessage/.mandochka/cache/

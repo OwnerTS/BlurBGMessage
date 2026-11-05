@@ -1,0 +1,6 @@
+{
+  "plugin_name": "BlurBGMessage",
+  "plugin_description": "Размытый полупрозрачный фон сообщений (Blur BG) с обводкой в стиле iOS.",
+  "loaded": "Плагин BlurBGMessage успешно загружен",
+  "unloaded": "Плагин BlurBGMessage выгружен"
+}
