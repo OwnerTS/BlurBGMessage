@@ -1,5 +1,5 @@
 metainfo: BlurBGMessage/meta.yml
-main: BlurBGMessage/src/main.py
+main: BlurBGMessage/src/main.pyc
 assets: BlurBGMessage/res
 strings: BlurBGMessage/locales
 mandochka: BlurBGMessage/.mandochka
