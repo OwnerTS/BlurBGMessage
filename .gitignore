@@ -5,3 +5,4 @@ builds/
 .mandochka/cache/
 BlurBGMessage/.mandochka/cache/
 BlurBGMessage/.mandochka/stats.yml
+BlurBGMessage/res/dex/
