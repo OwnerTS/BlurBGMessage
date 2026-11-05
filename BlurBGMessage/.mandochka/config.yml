@@ -4,8 +4,7 @@ buildNameUncompiled: "BlurBGMessage-{version}"
 buildNameCompiled: "BlurBGMessage-{version}"
 ignoreAll:
   - BlurBGMessage/.mandochka/cache/*
-compilationIgnore:
-  - BlurBGMessage/src/main.py
+compilationIgnore: []
 obfuscationConfig:
   stripDocstrings: true
   removeLogs: false
