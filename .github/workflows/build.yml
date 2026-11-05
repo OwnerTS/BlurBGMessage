@@ -32,7 +32,7 @@ jobs:
           path: |
             ~/.mandochka
             BlurBGMessage/.mandochka/cache
-          key: ${{ runner.os }}-mandochka-${{ hashFiles('**/refmap.yml', '**/meta.yml', '**/config.yml', 'compile_stubs/**', 'BlurBGMessage/dex_src/**', 'BlurBGMessage/src/**') }}
+          key: ${{ runner.os }}-mandochka-${{ hashFiles('**/refmap.yml', '**/meta.yml', '**/config.yml', 'compile_stubs/**', 'dex_src/**', 'BlurBGMessage/src/**') }}
           restore-keys: |
             ${{ runner.os }}-mandochka-
 

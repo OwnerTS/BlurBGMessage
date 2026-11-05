@@ -17,8 +17,6 @@ import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
 import android.util.Log;
-import com.exteragram.messenger.ExteraConfig;
-import com.exteragram.messenger.GlassOutlineStyle;
 import com.exteragram.messenger.utils.AppUtils;
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
@@ -41,8 +39,6 @@ public class BlurDrawer {
     private static volatile Object currentSource;
 
     private static final Paint glassPaint;
-    private static final Paint topStrokePaint;
-    private static final Paint bottomStrokePaint;
     private static final Paint fullStrokePaint;
     private static final Paint selectedPaint;
 
@@ -66,14 +62,6 @@ public class BlurDrawer {
     static {
         glassPaint = new Paint(Paint.ANTI_ALIAS_FLAG | Paint.FILTER_BITMAP_FLAG);
         glassPaint.setFilterBitmap(true);
-
-        topStrokePaint = new Paint(Paint.ANTI_ALIAS_FLAG);
-        topStrokePaint.setStyle(Paint.Style.STROKE);
-        topStrokePaint.setStrokeWidth(AndroidUtilities.dpf2(1.0f));
-
-        bottomStrokePaint = new Paint(Paint.ANTI_ALIAS_FLAG);
-        bottomStrokePaint.setStyle(Paint.Style.STROKE);
-        bottomStrokePaint.setStrokeWidth(AndroidUtilities.dpf2(0.6666667f));
 
         fullStrokePaint = new Paint(Paint.ANTI_ALIAS_FLAG);
         fullStrokePaint.setStyle(Paint.Style.STROKE);
@@ -494,41 +482,14 @@ public class BlurDrawer {
             glassPaint.setAlpha(alpha);
             canvas.drawPath(path, glassPaint);
 
-            // ExteraGram Liquid Glass Outline Style
+            // Forced Solid Glass Outline for BlurBGMessage
             if (BlurConfig.isBorder()) {
-                GlassOutlineStyle outlineStyle = ExteraConfig.getGlassOutlineStyle();
                 float brightness = AndroidUtilities.computePerceivedBrightness(baseColor);
                 boolean isBright = brightness > 0.72f;
-                Rect bounds = drawable != null ? drawable.getBounds() : null;
-
-                if (outlineStyle == GlassOutlineStyle.GLARE && bounds != null) {
-                    // Top highlight line (bright glare reflection)
-                    int topColor = isBright ? 0x40000000 : 0x85FFFFFF;
-                    topStrokePaint.setColor(Theme.multAlpha(topColor, alpha / 255.0f));
-                    topStrokePaint.setStrokeWidth(AndroidUtilities.dpf2(1.0f));
-
-                    float clipHeight = Math.min(bounds.height() / 2.0f, AndroidUtilities.dp(22.0f));
-                    canvas.save();
-                    canvas.clipRect(bounds.left - 2, bounds.top - 2, bounds.right + 2, bounds.top + clipHeight);
-                    canvas.drawPath(path, topStrokePaint);
-                    canvas.restore();
-
-                    // Bottom rim line (subtle edge shadow)
-                    int bottomColor = isBright ? 0x20000000 : 0x40FFFFFF;
-                    bottomStrokePaint.setColor(Theme.multAlpha(bottomColor, alpha / 255.0f));
-                    bottomStrokePaint.setStrokeWidth(AndroidUtilities.dpf2(0.6666667f));
-
-                    canvas.save();
-                    canvas.clipRect(bounds.left - 2, bounds.bottom - clipHeight, bounds.right + 2, bounds.bottom + 2);
-                    canvas.drawPath(path, bottomStrokePaint);
-                    canvas.restore();
-                } else if (outlineStyle == GlassOutlineStyle.SOLID) {
-                    // Full outline line
-                    int fullColor = isBright ? 0x35000000 : 0x60FFFFFF;
-                    fullStrokePaint.setColor(Theme.multAlpha(fullColor, alpha / 255.0f));
-                    fullStrokePaint.setStrokeWidth(AndroidUtilities.dpf2(1.0f));
-                    canvas.drawPath(path, fullStrokePaint);
-                }
+                int strokeColor = isBright ? 0x30000000 : 0x48FFFFFF;
+                fullStrokePaint.setColor(Theme.multAlpha(strokeColor, alpha / 255.0f));
+                fullStrokePaint.setStrokeWidth(AndroidUtilities.dpf2(1.0f));
+                canvas.drawPath(path, fullStrokePaint);
             }
 
             return true;

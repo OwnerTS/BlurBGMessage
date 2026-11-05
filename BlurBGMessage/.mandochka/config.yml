@@ -12,7 +12,7 @@ obfuscationConfig:
   renameLocals: false
 dex:
   enabled: true
-  source: BlurBGMessage/dex_src
+  source: dex_src
   stubs: compile_stubs
   output: BlurBGMessage/res/dex/classes.dex
   minApi: 26
