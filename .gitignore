@@ -4,3 +4,4 @@ builds/
 *.tmp
 .mandochka/cache/
 BlurBGMessage/.mandochka/cache/
+BlurBGMessage/.mandochka/stats.yml
